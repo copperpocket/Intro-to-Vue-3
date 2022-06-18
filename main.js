@@ -5,7 +5,7 @@ const app = Vue.createApp({
             product: 'Socks',
             image: './assets/images/socks_blue.jpg',
             url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-            inventory: 0,
+            inventory: 5,
             onSale: true,
             details: ['50% cotton', '30% wool', '20% polyester'],
             variants: [
@@ -15,8 +15,13 @@ const app = Vue.createApp({
         }
     },
     methods: {
+        inStock()  {
+            if (this.inventory >= 1) return true
+            else return false
+        },
         addToCart() {
             this.cart += 1
+            this.inventory -= 1
         },
         updateImage(variantImage) {
             this.image = variantImage
